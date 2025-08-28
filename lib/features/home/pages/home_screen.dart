@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         .toList()
                         .cast<TaskModel>();
                     List<TaskModel> filterdTaskList = [];
-                    for (int i = 0; i < taskList.length; i++) {
+                    for (int i = taskList.length - 1; i >= 0; i--) {
                       if (taskList[i].date == dateString) {
                         filterdTaskList.add(taskList[i]);
                       }

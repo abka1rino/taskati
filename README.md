@@ -1,16 +1,44 @@
-# taskati
+# 📅 Taskati App
 
-A new Flutter project.
+Taskati is a simple and elegant **task management app** built with **Flutter**.  
+It helps you organize your daily schedule, manage your tasks, and stay productive.  
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features  
 
-A few resources to get you started if this is your first Flutter project:
+- 👤 **User Profile**  
+  - Update your profile with your name and profile picture.  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 📝 **Task Management**  
+  - Add new tasks with title, description, and time.  
+  - Edit or update existing tasks.  
+  - Mark tasks as **TODO** or completed (coming soon).  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 📆 **Calendar & Timeline**  
+  - Pick dates easily with a beautiful date timeline.  
+  - View all tasks for the selected day.  
+
+- 🎨 **UI/UX**  
+  - Modern and colorful interface.  
+  - Responsive and clean design.  
+  - Supports **Light Mode** 🌞 and **Dark Mode** 🌙  
+
+---
+
+## 📸 Screenshots  
+
+### 🏠 Home Screen  
+| Light Mode | Dark Mode |  
+|------------|-----------|  
+| ![Home Light](./assets/screenshots/light_home.png) | ![Home Dark](./assets/screenshots/dark_home.png) |  
+
+### ➕ Add Task Screen  
+| Light Mode | Dark Mode |  
+|------------|-----------|  
+| ![Add Task Light](./assets/screenshots/light_add_task.png) | ![Add Task Dark](./assets/screenshots/dark_add_task.png) |  
+
+### 👤 Profile Screen  
+| Light Mode | Dark Mode |  
+|------------|-----------|  
+| ![Profile Light](./assets/screenshots/light_profile.png) | ![Profile Dark](./assets/screenshots/dark_profile.png) |  

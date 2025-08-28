@@ -52,7 +52,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               if (widget.taskModel?.id != null) {
                 id = widget.taskModel!.id;
               } else {
-                id = UniqueKey().toString();
+                id = startTimeController.text + endTimeController.text;
               }
               TaskCachingService.putTaskData(
                 id,
