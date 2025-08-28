@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:taskati/core/constants/app_assets.dart';
 import 'package:taskati/core/services/caching.dart';
 import 'package:taskati/core/utils/app_colors.dart';
-import 'package:taskati/core/utils/text_style.dart';
 
 class EditAccountScreen extends StatefulWidget {
   const EditAccountScreen({super.key});

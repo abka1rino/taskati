@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:taskati/core/utils/app_colors.dart';
 
 class TextStyles {
   getHeadline({

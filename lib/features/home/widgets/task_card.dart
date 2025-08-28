@@ -34,12 +34,12 @@ class TaskCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(Icons.delete, color: AppColors.whiteColor),
+              Icon(Icons.check, color: AppColors.whiteColor),
               SizedBox(width: 10),
               Text(
-                'Delete',
+                'Completed',
                 style: TextStyles.getBody(color: AppColors.whiteColor),
               ),
             ],
@@ -63,75 +63,78 @@ class TaskCard extends StatelessWidget {
             ],
           ),
         ),
-        child: Container(
-          height: 110,
-          decoration: BoxDecoration(
-            color: taskModel.isCompleted
-                ? Colors.green
-                : colors[taskModel.color],
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        taskModel.title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyles.getTitle(color: Colors.white),
-                      ),
-                      SizedBox(height: 6),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.access_time,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            '${taskModel.startTime} - ${taskModel.endTime}',
-                            style: TextStyles.getBody(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 6),
-                      Text(
-                        taskModel.description == ''
-                            ? 'No Description'
-                            : taskModel.description,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyles.getBody(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                RotatedBox(
-                  quarterTurns: 1,
-                  child: Divider(
-                    indent: 10,
-                    endIndent: 10,
-                    thickness: 1,
-                    color: AppColors.greyColor,
-                  ),
-                ),
-                RotatedBox(
-                  quarterTurns: 3,
-                  child: Text(
-                    'TODO',
-                    style: TextStyles.getTitle(
-                      color: Colors.white,
-                      fontSize: 15,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6),
+          child: Container(
+            height: 110,
+            decoration: BoxDecoration(
+              color: taskModel.isCompleted
+                  ? Colors.green
+                  : colors[taskModel.color],
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          taskModel.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyles.getTitle(color: Colors.white),
+                        ),
+                        SizedBox(height: 6),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.access_time,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              '${taskModel.startTime} - ${taskModel.endTime}',
+                              style: TextStyles.getBody(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 6),
+                        Text(
+                          taskModel.description == ''
+                              ? 'No Description'
+                              : taskModel.description,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyles.getBody(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
+                  RotatedBox(
+                    quarterTurns: 1,
+                    child: Divider(
+                      indent: 10,
+                      endIndent: 10,
+                      thickness: 1,
+                      color: AppColors.greyColor,
+                    ),
+                  ),
+                  RotatedBox(
+                    quarterTurns: 3,
+                    child: Text(
+                      taskModel.isCompleted ? 'Completed' : 'TODO',
+                      style: TextStyles.getTitle(
+                        color: Colors.white,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
