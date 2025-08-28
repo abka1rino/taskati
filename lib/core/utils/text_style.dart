@@ -3,7 +3,7 @@ import 'package:taskati/core/utils/app_colors.dart';
 
 class TextStyles {
   getHeadline({
-    Color color = AppColors.blackColor,
+    Color? color,
     FontWeight fontWeight = FontWeight.w600,
     double fontSize = 24,
   }) {
@@ -11,7 +11,7 @@ class TextStyles {
   }
 
   static TextStyle getTitle({
-    Color color = AppColors.blackColor,
+    Color? color,
     FontWeight fontWeight = FontWeight.w600,
     double fontSize = 18,
   }) {
@@ -26,7 +26,7 @@ class TextStyles {
     return TextStyle(
       fontSize: fontSize,
       fontWeight: fontWeight ?? FontWeight.normal,
-      color: color ?? AppColors.blackColor,
+      color: color,
     );
   }
 
@@ -38,7 +38,7 @@ class TextStyles {
     return TextStyle(
       fontSize: fontSize,
       fontWeight: fontWeight ?? FontWeight.normal,
-      color: color ?? AppColors.blackColor,
+      color: color,
     );
   }
 }

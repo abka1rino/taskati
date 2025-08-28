@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taskati/core/constants/app_assets.dart';
 import 'package:taskati/core/extentions/navigation.dart';
+import 'package:taskati/core/services/caching.dart';
 import 'package:taskati/core/utils/text_style.dart';
-import 'package:taskati/features/splash/new%20user%20screen/new_user_screeen.dart';
+import 'package:taskati/features/home/pages/home_screen.dart';
+import 'package:taskati/features/new%20user%20screen/profile.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,7 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
-      pushWithReplacement(context, NewUserScreen());
+      UserCachingService.getUserData(UserCachingService.registeredKey) ?? false
+          ? pushWithReplacement(context, HomeScreen())
+          : pushWithReplacement(context, NewUserScreen());
     });
     super.initState();
 

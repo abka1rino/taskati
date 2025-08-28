@@ -2,9 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:taskati/components/buttons/main_button.dart';
 import 'package:taskati/core/constants/app_assets.dart';
+import 'package:taskati/core/extentions/navigation.dart';
+import 'package:taskati/core/services/caching.dart';
 import 'package:taskati/core/utils/app_colors.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:taskati/features/splash/new%20user%20screen/widgets/custom_name_text_field.dart';
+import 'package:taskati/features/home/pages/home_screen.dart';
+import 'package:taskati/features/new%20user%20screen/widgets/custom_name_text_field.dart';
 
 class NewUserScreen extends StatefulWidget {
   const NewUserScreen({super.key});
@@ -24,6 +27,23 @@ class _NewUserScreenState extends State<NewUserScreen> {
           TextButton(
             onPressed: () {
               if (nameController.text.isNotEmpty && path != null) {
+                UserCachingService.putUserData(
+                  UserCachingService.registeredKey,
+                  true,
+                );
+                UserCachingService.putUserData(
+                  UserCachingService.nameKey,
+                  nameController.text,
+                );
+                UserCachingService.putUserData(
+                  UserCachingService.imageKey,
+                  path,
+                );
+                UserCachingService.putUserData(
+                  UserCachingService.isDark,
+                  false,
+                );
+                pushWithReplacement(context, const HomeScreen());
               } else if (nameController.text.isEmpty && path != null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
