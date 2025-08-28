@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:taskati/components/buttons/main_button.dart';
 import 'package:taskati/core/constants/app_assets.dart';
 import 'package:taskati/core/services/caching.dart';
 import 'package:taskati/core/utils/app_colors.dart';
@@ -14,10 +16,11 @@ class EditAccountScreen extends StatefulWidget {
 
 class _EditAccountScreenState extends State<EditAccountScreen> {
   bool isDark = UserCachingService.getUserData(UserCachingService.isDark);
-  TextEditingController nameControler = TextEditingController(
+  TextEditingController nameController = TextEditingController(
     text: UserCachingService.getUserData(UserCachingService.nameKey),
   );
   bool enabled = false;
+  String? path;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +71,40 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                     bottom: -5,
                     right: -5,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              height: 200,
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 15),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 30.0,
+                                    ),
+                                    child: MainButton(
+                                      text: 'Upload From Camera',
+                                      onPressed: () => uplodeImage(true),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 30.0,
+                                    ),
+                                    child: MainButton(
+                                      text: 'Upload From Gallery',
+                                      onPressed: () => uplodeImage(false),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
                       icon: Icon(
                         Icons.camera_alt,
                         size: 30,
@@ -86,7 +122,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                   Expanded(
                     child: SizedBox(
                       child: TextFormField(
-                        controller: nameControler,
+                        controller: nameController,
                         enabled: enabled,
                       ),
                     ),
@@ -101,13 +137,22 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       child: enabled
                           ? IconButton(
                               onPressed: () {
-                                UserCachingService.putUserData(
-                                  UserCachingService.nameKey,
-                                  nameControler.text,
-                                );
-                                setState(() {
-                                  enabled = false;
-                                });
+                                if (nameController.text == '') {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Please Enter aname'),
+                                      backgroundColor: AppColors.redColor,
+                                    ),
+                                  );
+                                } else {
+                                  UserCachingService.putUserData(
+                                    UserCachingService.nameKey,
+                                    nameController.text,
+                                  );
+                                  setState(() {
+                                    enabled = false;
+                                  });
+                                }
                               },
                               icon: Icon(Icons.check),
                             )
@@ -128,5 +173,17 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
         ),
       ),
     );
+  }
+
+  uplodeImage(bool isCamera) async {
+    var picker = await ImagePicker().pickImage(
+      source: isCamera ? ImageSource.camera : ImageSource.gallery,
+    );
+    if (picker != null) {
+      UserCachingService.putUserData(UserCachingService.imageKey, path);
+      setState(() {
+        path = picker.path;
+      });
+    }
   }
 }
