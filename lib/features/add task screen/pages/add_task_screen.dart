@@ -198,24 +198,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             suffixIcon: Icons.access_time,
             readOnly: true,
             onTap: () async {
-              var selectedTime = await showTimePicker(
+              var selectedEndTime = await showTimePicker(
                 context: context,
                 initialTime: TimeOfDay.now(),
               );
-              if (selectedTime != null &&
-                  selectedTime.isAfter(
-                    TimeOfDay.fromDateTime(
-                      DateFormat.jm().parse(startTimeController.text),
-                    ),
-                  )) {
-                endTimeController.text = selectedTime.format(context);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('End time must be after start time'),
-                    backgroundColor: AppColors.redColor,
-                  ),
-                );
+              if (selectedEndTime != null) {
+                endTimeController.text = selectedEndTime.format(context);
               }
             },
           ),
