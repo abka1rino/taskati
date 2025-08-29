@@ -33,7 +33,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         widget.taskModel?.startTime ?? DateFormat.jm().format(DateTime.now());
     endTimeController.text =
         widget.taskModel?.endTime ??
-        DateFormat.jm().format(DateTime.now().add(Duration(minutes: 15)));
+        DateFormat.jm().format(DateTime.now());
     super.initState();
 
     // Perform any initialization tasks here
@@ -42,6 +42,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 23.0),
         child: MainButton(
@@ -203,7 +204,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 initialTime: TimeOfDay.now(),
               );
               if (selectedEndTime != null) {
-                endTimeController.text = selectedEndTime.format(context);
+
+                  endTimeController.text = selectedEndTime.format(context);
+                
               }
             },
           ),
